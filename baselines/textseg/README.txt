@@ -1,0 +1,1 @@
+Classes from  [Text Segmentation as a Supervised Learning Task](https://github.com/koomri/text-segmentation/blob/master/) repository, for pre processing the text and generating traninig data.

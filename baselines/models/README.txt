@@ -1,0 +1,1 @@
+Contains the model file from the [Text Segmentation as a Supervised Learning Task](https://arxiv.org/abs/1803.09337), as a baseline.
