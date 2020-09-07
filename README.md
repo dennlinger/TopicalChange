@@ -64,7 +64,7 @@ use `our_model/02_generate_training_pairs.py`. For the baselines there are also 
 `baseline/02_generate_training_data_graphseg.py` and  `baseline/02_generate_training_data_textseg.py`. 
 Example:
 ```bash
-python our_model/2_generate_training_pairs.py --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER \
+python our_model/02_generate_training_pairs.py --input_folder INPUT_FOLDER --output_folder OUTPUT_FOLDER \
   --sentence_tokenizer_path SENTENCE_TOKENIZER_PATH \
   --sample_number 3 \
   --heading_level 1 \
