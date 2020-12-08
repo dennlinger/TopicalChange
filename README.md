@@ -2,12 +2,12 @@
 #### by Dennis Aumiller*, Satya Almasian*, Sebastian Lackner and Michael Gertz
 *Equal Contribution.
 
-This repository contains scripts to reproduce the results of the paper [https://arxiv.org/abs/2012.03619], for transformer based models for text segmentation. 
+This repository contains scripts to reproduce the results of the paper https://arxiv.org/abs/2012.03619, for transformer based models for text segmentation. 
 
-This repository contains mostly data generation and evaluation script and can only be used with the pre-trained models available at [model url]. 
+This repository contains mostly data generation and evaluation scripts. For pre-trained models used in the paper, please reach out to the authors via `<lastname>@informatik.uni-heidelberg.de`.
 
 ## Dataset
-Our Terms-of-Service dataset is publicly available at [https://heibox.uni-heidelberg.de/f/749127d934cb4a64929c/?dl=1]. 
+Our Terms-of-Service dataset is publicly available at https://heibox.uni-heidelberg.de/f/749127d934cb4a64929c/?dl=1. 
 For more information on the data please refer to the paper and appendix. 
 The dataset consist of `json` files for Terms of Services crawled from the web. 
 An example file structure can be seen here: 
