@@ -2,8 +2,12 @@
 #### by Dennis Aumiller*, Satya Almasian*, Sebastian Lackner and Michael Gertz
 *Equal Contribution.
 
+---
 ### UPDATE 2021-01-18:
+
 You can now directly load the PyTorch weights in Huggingface transformers for the Model Roberta CLS consec (run 5): https://huggingface.co/dennlinger/roberta-cls-consec. This was the best-performing run on base transformers (not Sentence-transformers).
+
+---
 
 This repository contains scripts to reproduce the results of the paper https://arxiv.org/abs/2012.03619, for transformer based models for text segmentation. 
 
