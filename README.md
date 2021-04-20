@@ -1,9 +1,9 @@
-# Topical Change Detection in Documents via Embeddings of Long Sequences
+# Structural Text Segmentation of Legal Documents
 #### by Dennis Aumiller*, Satya Almasian*, Sebastian Lackner and Michael Gertz
 *Equal Contribution.
 
 ---
-### UPDATE 2021-01-18:
+## Online Models
 
 You can now directly load the PyTorch weights in Huggingface transformers for the Model Roberta CLS consec (run 5): https://huggingface.co/dennlinger/roberta-cls-consec. This was the best-performing run on base transformers (not Sentence-transformers).
 
