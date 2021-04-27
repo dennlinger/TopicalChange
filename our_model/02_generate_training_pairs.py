@@ -85,7 +85,7 @@ class Doc(object):
 
 class Documents(object):
     def __init__(self, inputs, labels, storage_method="raw", force_shorten=True,
-                 data_dir="./data",tokenizer_path="./"):
+                 data_dir="./data", tokenizer_path="./"):
         """
         Essentially bucket-sort all inputs according to their labels.
         Then we can simply "draw" from the correct bucket
@@ -177,21 +177,13 @@ class ConsecutiveDocuments(Doc):
             doc = {}
             with open(os.path.join(folder, f)) as fp:
                 tos = json.load(fp)
-            for section in tos["level1_headings"]:
+            for section in tos:
                 # Transform dict into X/y sample
-                text = section["text"]
-                label = section["section"]
+                text = section["Text"]
+                label = section["Section"]
                 doc = self.add_to_section(text, label, doc)
 
             self.all_docs.append(doc)
-
-    def _add_samples(self, label, section, doc, value):
-        rand_pos = random.randint(0, len(doc[label]) - 1)
-        second_section = doc[label][rand_pos]
-        self.final_data.append({"section_1": section,
-                                "section_2": second_section,
-                                "label": value})
-        return second_section
 
     def add_to_section(self, section_text, section_label, doc):
         processed_text = self.transform_text_accordingly(section_text)
@@ -202,14 +194,22 @@ class ConsecutiveDocuments(Doc):
             doc[section_label] = [processed_text]
         return doc
 
+    def _add_samples(self, label, section, doc, value):
+        rand_pos = random.randint(0, len(doc[label]) - 1)
+        second_section = doc[label][rand_pos]
+        self.final_data.append({"section_1": section,
+                                "section_2": second_section,
+                                "label": value})
+        return second_section
+
     def generate_data(self, sample_number, file_name):
         """
         :param sample_number: Number of positive/negative samples, respectively.
         :param file_name: Storage file name (train, test, dev)
         :return: None
         """
-        docs_skipped=0
-        sections_skipped=0
+        docs_skipped = 0
+        sections_skipped = 0
         print(f"Generating {file_name} data...")
         for doc in tqdm(self.all_docs):
             for label, sections in doc.items():
@@ -247,10 +247,10 @@ def load_files(files, folder):
         with open(os.path.join(folder, f)) as fp:
             tos = json.load(fp)
 
-        for section in tos["level1_headings"]:
+        for section in tos:
             # Transform dict into X/y sample
-            text = section["text"]
-            label = section["section"]
+            text = section["Text"]
+            label = section["Section"]
 
             inputs.append(text)
             labels.append(label)
@@ -281,7 +281,7 @@ if __name__ == "__main__":
     parser.add_argument('--storage_method',
                         help='Either "raw",  "bert" (BERT tokenization), '
                              '"roberta" (RoBERTa tokenization), or "token" (own tokenizer)',
-                        choices=['raw', 'roberta', 'bert', 'token'],default="raw")
+                        choices=['raw', 'roberta', 'bert', 'token'], default="raw")
     parser.add_argument('--random_split',
                         help='If set to true all data will be read and combined before spliting, '
                              'otherwise the documents are separated for dev and test',
@@ -313,7 +313,7 @@ if __name__ == "__main__":
             with open(os.path.join(input_folder, f)) as fp:
                 tos = json.load(fp)
 
-            for section in tos["level"+str(heading_level)+"_headings"]:
+            for section in tos["level" + str(heading_level) + "_headings"]:
                 # Transform dict into X/y sample
                 text = section["text"]
                 label = section["section"]
@@ -340,24 +340,24 @@ if __name__ == "__main__":
         dev_files = file_order[int(len(files) * train_fraction): int(len(files) * (train_fraction + dev_fraction))]
         test_files = file_order[int(len(files) * (train_fraction + dev_fraction)):]
 
-        input_train, label_train = load_files(train_files,input_folder)
-        input_test, label_test = load_files(test_files,input_folder)
-        input_dev, label_dev = load_files(dev_files,input_folder)
+        input_train, label_train = load_files(train_files, input_folder)
+        input_test, label_test = load_files(test_files, input_folder)
+        input_dev, label_dev = load_files(dev_files, input_folder)
 
         dst_folder = "og-test"  # copy the files from the test set to the new location
         # for text segmentation we need the original structure of the files in the test set.
-        os.makedirs(os.path.join(output_folder,dst_folder), exist_ok=True)
+        os.makedirs(os.path.join(output_folder, dst_folder), exist_ok=True)
         for file in test_files:
             src = os.path.join(input_folder, file)
-            dst = os.path.join(os.path.join(output_folder,dst_folder), file)
+            dst = os.path.join(os.path.join(output_folder, dst_folder), file)
             copyfile(src, dst)
 
     random.seed(12)
     if args.consecutive:
 
-        train_docs = ConsecutiveDocuments(train_files,input_folder, storage_method, data_dir=output_folder)
-        test_docs = ConsecutiveDocuments(dev_files,input_folder, storage_method, data_dir=output_folder)
-        dev_docs = ConsecutiveDocuments(test_files,input_folder, storage_method, data_dir=output_folder)
+        train_docs = ConsecutiveDocuments(train_files, input_folder, storage_method, data_dir=output_folder)
+        test_docs = ConsecutiveDocuments(dev_files, input_folder, storage_method, data_dir=output_folder)
+        dev_docs = ConsecutiveDocuments(test_files, input_folder, storage_method, data_dir=output_folder)
     else:
         train_docs = Documents(input_train, label_train, storage_method, data_dir=output_folder)
         test_docs = Documents(input_test, label_test, storage_method, data_dir=output_folder)
