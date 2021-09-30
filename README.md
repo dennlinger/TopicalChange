@@ -5,7 +5,8 @@
 ---
 ## Online Models
 
-You can now directly load the PyTorch weights in Huggingface transformers for the Model Roberta CLS consec (run 5): https://huggingface.co/dennlinger/roberta-cls-consec. This was the best-performing run on base transformers (not Sentence-transformers).
+You can now directly load the PyTorch weights in Huggingface transformers for the Model Roberta CLS consec (run 5): https://huggingface.co/dennlinger/roberta-cls-consec. This was the best-performing run on base transformers (not Sentence-transformers).  
+**Update 2021-09-30:** We have now a model trained on Wikipedia paragraphs instead, thanks in large parts to Lucienne-Sophie Marmé. The model can be found online on the Huggingface model hub: https://huggingface.co/dennlinger/bert-wiki-paragraphs
 
 ---
 
