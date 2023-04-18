@@ -7,7 +7,7 @@
 
 You can now directly load the PyTorch weights in Huggingface transformers for the Model Roberta CLS consec (run 5): https://huggingface.co/dennlinger/roberta-cls-consec. This was the best-performing run on base transformers (not *sentence-transformers*).  
 **Update 2021-09-30:** We have now a model trained on Wikipedia paragraphs instead, thanks in large parts to Lucienne-Sophie Marmé. The model can be found online on the Huggingface model hub: https://huggingface.co/dennlinger/bert-wiki-paragraphs  
-**Update 2022-02-16:** We have made some changes to our *sentence-transformers* fork. If you use our tool, please check out the [`topical-change` branch of ourf fork](https://github.com/dennlinger/sentence-transformers/tree/topical-change)!
+**Update 2022-02-16:** We have made some changes to our *sentence-transformers* fork. If you use our tool, please check out the [`topical-change` branch of our fork](https://github.com/dennlinger/sentence-transformers/tree/topical-change)!
 
 ---
 
