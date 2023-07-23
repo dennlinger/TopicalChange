@@ -10,7 +10,7 @@ segeval==2.0.11
 sentencepiece==0.1.86
 six==1.14.0
 tokenizers==0.7.0
-torch==1.4.0
+torch==1.13.1
 torchvision==0.5.0
 tornado==6.0.4
 tqdm==4.45.0
